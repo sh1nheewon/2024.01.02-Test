@@ -1,0 +1,8 @@
+package test.models;
+
+public class GuideDto {
+	public String id;
+	public String list;
+	public String SEQ;
+	public String guide;
+}

@@ -1,0 +1,11 @@
+package test.exec;
+
+import test.service.impl.GuideServiceImplV1;
+
+public class Exec {
+	public static void main(String[] args) {
+		String guideFile = "";
+		GuideServiceImplV1 guideServiceImplV1 = new GuideServiceImplV1(guideFile);
+		guideServiceImplV1.printGuideList();
+	}
+}

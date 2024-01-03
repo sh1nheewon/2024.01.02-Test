@@ -1,0 +1,77 @@
+package test.service.impl;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import test.models.GuideDto;
+import test.service.GuideService;
+import test.utils.Line;
+
+public class GuideServiceImplV1 implements GuideService {
+	
+	private List<GuideDto> guideList = null;
+	private Scanner scan = null;
+
+	public GuideServiceImplV1() {
+		guideList = new ArrayList<GuideDto>();
+		
+	}
+
+	@Override
+	public void loadGuide() {
+		String guideFile = "src/test/data/guide.txt";
+		InputStream is = null;
+		try {
+			is = new FileInputStream(guideFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		scan = new Scanner(is);
+		
+		while (scan.hasNext()) {
+			String line = scan.nextLine();
+			String[] lines = line.split(",");
+			
+			GuideDto dto = new GuideDto();
+			
+			for(int i = 0 ; i < lines.length; i++) {
+				
+			dto.id = lines[0];
+			dto.list = lines[1];
+			dto.SEQ = lines[2];
+			dto.guide = lines[3];
+			
+			}
+			guideList.add(dto);
+
+		}
+		scan.close();
+	}
+
+	
+	@Override
+	public void printGuideList() {
+		
+		Line.dLine(100);
+		Line.dLine(100);
+		System.out.println("id\t종목명\t순서\t방법\t");		
+		Line.sLine(100);
+		for(GuideDto dto : guideList) {
+			String id = dto.id.substring(2,4);
+			int idNum = Integer.valueOf(id);
+			for(int i = 1 ; i < guideList.size().v; i++) {
+				idNum = i;
+			}
+			System.out.printf("%s	\t",idNum);
+			System.out.printf("%s	\t",dto.list);
+			System.out.printf("%s회	\t",dto.SEQ);
+			System.out.printf("%s	\n",dto.guide);
+			
+		}
+	}
+}

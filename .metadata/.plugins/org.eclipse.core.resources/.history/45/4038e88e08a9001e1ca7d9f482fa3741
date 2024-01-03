@@ -1,0 +1,10 @@
+package test.exec;
+
+import test.service.GuideService;
+
+public class Exec {
+	public static void main(String[] args) {
+		GuideService guideService = new GuideService();
+		
+	}
+}
